@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Sqlite" id="Project-d7a" database="Sqlite" >
+	<schema name="Default" >
+		<table name="Currículo" >
+			<column name="experiência" type="TEXT" jt="-1" />
+			<column name="formação" type="TEXT" jt="-1" />
+			<column name="realizações" type="TEXT" jt="-1" />
+			<index name="unq_Currículo_experiência" unique="UNIQUE_KEY" >
+				<column name="experiência" />
+			</index>
+			<fk name="fk_Currículo" to_schema="Default" to_table="Formação" >
+				<fk_column name="formação" pk="formação" />
+			</fk>
+			<fk name="fk_Currículo_0" to_schema="Default" to_table="Experiência" >
+				<fk_column name="experiência" pk="experiência" />
+			</fk>
+			<fk name="fk_Currículo_1" to_schema="Default" to_table="Realizações" >
+				<fk_column name="realizações" pk="realizações" />
+			</fk>
+		</table>
+		<table name="Experiência" prior="Experiẽncia" >
+			<column name="Primeira experiência" type="TEXT" jt="-1" />
+			<column name="Segunda experiência" type="TEXT" jt="-1" />
+			<column name="experiência" type="TEXT" jt="-1" />
+			<index name="unq_Experiência_experiência" unique="UNIQUE_KEY" >
+				<column name="experiência" />
+			</index>
+			<fk name="fk_experiência_sobre mim" to_schema="Default" to_table="Sobre mim" >
+				<fk_column name="experiência" pk="texto de resumo (quem eu sou)" />
+			</fk>
+		</table>
+		<table name="Formação" >
+			<column name="Curso" type="TEXT" jt="-1" />
+			<column name="Ano de conclusão" type="INTEGER" jt="4" />
+			<column name="formação" type="TEXT" jt="-1" />
+			<index name="unq_Formação_formação" unique="UNIQUE_KEY" >
+				<column name="formação" />
+			</index>
+			<fk name="fk_formação_sobre mim" to_schema="Default" to_table="Sobre mim" >
+				<fk_column name="formação" pk="texto de resumo (quem eu sou)" />
+			</fk>
+		</table>
+		<table name="Realizações" >
+			<column name="Titulo" type="TEXT" jt="-1" />
+			<column name="Ano da realização" type="INTEGER" jt="4" />
+			<column name="realizações" type="TEXT" jt="-1" />
+			<index name="unq_Realizações_realizações" unique="UNIQUE_KEY" >
+				<column name="realizações" />
+			</index>
+			<fk name="fk_realizações_sobre mim" to_schema="Default" to_table="Sobre mim" >
+				<fk_column name="realizações" pk="texto de resumo (quem eu sou)" />
+			</fk>
+		</table>
+		<table name="Sobre mim" >
+			<column name="endereço" type="TEXT" jt="-1" />
+			<column name="telefone" type="INTEGER" jt="4" />
+			<column name="email" type="TEXT" jt="-1" />
+			<column name="texto de resumo (quem eu sou)" type="VARCHAR" length="250" jt="12" />
+			<index name="unq_Sobre mim_texto de resumo (quem eu sou)" unique="UNIQUE_KEY" >
+				<column name="texto de resumo (quem eu sou)" />
+			</index>
+		</table>
+	</schema>
+	<connector name="Sqlite" database="Sqlite" driver_class="org.sqlite.JDBC" driver_jar="sqlite-jdbc-3.40.0.0.jar" driver_desc="Standard" host="localhost" port="7210" instance="C:/Users/Inteli/OneDrive/Documentos/M2/entregaS2" useSystemProxy="false" />
+	<layout name="Main Layout" id="Layout-221a" show_relation="columns" >
+		<entity schema="Default" name="Currículo" color="C1D8EE" x="384" y="48" />
+		<entity schema="Default" name="Experiência" color="C1D8EE" x="48" y="256" />
+		<entity schema="Default" name="Formação" color="C1D8EE" x="752" y="240" />
+		<entity schema="Default" name="Realizações" color="C1D8EE" x="416" y="320" />
+		<entity schema="Default" name="Sobre mim" color="C1D8EE" x="352" y="624" />
+	</layout>
+</project>

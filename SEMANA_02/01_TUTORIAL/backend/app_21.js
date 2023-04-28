@@ -41,7 +41,10 @@
         });
         db.close(); // Fecha o banco
     });
-
+        var sql = "SELECT qtde_horas \
+                    FROM alocacao\
+                    ";
+        db.all(sql, [], (err, rows))    
     // Retorna todos registros de alocações
     app.get('/alocacoes', (req, res) => {
         res.statusCode = 200;

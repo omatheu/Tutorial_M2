@@ -64,9 +64,10 @@
 	<connector name="Sqlite" database="Sqlite" driver_class="org.sqlite.JDBC" driver_jar="sqlite-jdbc-3.40.0.0.jar" driver_desc="Standard" host="localhost" port="7210" instance="C:/Users/Inteli/OneDrive/Documentos/M2/entregaS2" useSystemProxy="false" />
 	<layout name="Main Layout" id="Layout-221a" show_relation="columns" >
 		<entity schema="Default" name="Currículo" color="C1D8EE" x="384" y="48" />
-		<entity schema="Default" name="Experiência" color="C1D8EE" x="48" y="256" />
-		<entity schema="Default" name="Formação" color="C1D8EE" x="752" y="240" />
-		<entity schema="Default" name="Realizações" color="C1D8EE" x="416" y="320" />
-		<entity schema="Default" name="Sobre mim" color="C1D8EE" x="352" y="624" />
+		<entity schema="Default" name="Experiência" color="C1D8EE" x="48" y="192" />
+		<entity schema="Default" name="Formação" color="C1D8EE" x="576" y="176" />
+		<entity schema="Default" name="Realizações" color="C1D8EE" x="384" y="240" />
+		<entity schema="Default" name="Sobre mim" color="C1D8EE" x="384" y="432" />
+		<script name="script.sql" id="Editor-6d8" language="SQL" confirmed="y" file="file:/C:/Users/Inteli/OneDrive/Documentos/GitHub/Tutorial_M2/SEMANA_02/02_AUT_EST_ENTREGA/script.sql" />
 	</layout>
 </project>

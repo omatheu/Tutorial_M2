@@ -23,6 +23,11 @@
 
     });
 
+    app.get('/exibirdado', function(req, res){
+        res.sendFile(__dirname+'/exibe.html')
+
+    });
+
     
     /******** CRUD ************/
     app.use(express.json());
@@ -60,12 +65,13 @@
     });
 
     // Monta o formulário para o update (é o U do CRUD - Update)
-    // para acessar é preciso descrever o id na barra de navegação para que seja possível acessar
-    app.get('/exibirdado', (req, res) => {
-        id = req.query.id;
+    
+    app.get('/mostradado', (req, res) => {
+        id = req.query.id;// para acessar é preciso descrever o id na barra de navegação para que seja possível acessar
         res.statusCode = 200;
         res.setHeader('Access-Control-Allow-Origin', '*'); 
         sql = `SELECT * FROM formacao WHERE id=${id}`
+        console.log(sql)
         var db = new sqlite3.Database(DBPATH); // Abre o banco
         db.all(sql, [],  (err, rows ) => {
             if (err) {

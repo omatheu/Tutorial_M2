@@ -1,7 +1,5 @@
 ﻿api = 'http://127.0.0.1:3071'
 
-console.log('esta rodando esse script de admin')
-
 $(document).ready(() => {
     users.list();
 });
@@ -18,7 +16,6 @@ var users = {
                 data.forEach(element => {
                     tx += '<div class="user">';
                         tx += '<div class="title">' + `${element.nome} - ${element.email} - ${element.telefone} ` + '</div>';
-                        
                         tx += '<div class="actions">';
                             tx += '<div class="action" onclick="user.update(' + element.userId + ',\'' + element.nome + '\')">Editar</div>';
                             tx += '<div class="action" onclick="user.delete(' + element.userId + ')">Excluir</div>';

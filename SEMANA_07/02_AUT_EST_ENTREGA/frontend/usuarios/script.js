@@ -6,12 +6,9 @@ Declaração de variáveis
 var getResDiv = "#get";
 var getDBResDiv = "#getDB";
 
-console.log('esta rodando esse script')
-
 /* Função que faz um requisição GET */
 function TestGET(){
     var url = "https://jsonplaceholder.typicode.com/todos/1";
-    console.log('esta rodando esse script')
 
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", url, false);

@@ -1,6 +1,9 @@
+//O seguinte código possuí algumas requisições, no entanto a principal (AJAX) o aluno não conseguiu implementar.
+//sorry 
+    
     const express = require('express'); 
     const bodyParser = require('body-parser');
-    const urlencodedParser = bodyParser.urlencoded({ extended: false })
+    const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
     const sqlite3 = require('sqlite3').verbose();
     const DBPATH = 'entrega_autoestudo.db';
@@ -11,6 +14,24 @@
 
     /* Colocar toda a parte estática no frontend */
     app.use(express.static('./'));
+
+
+    app.post('/enviar', (req, res) => {
+        res.statusCode = 200;
+        res.setHeader('Access-Control-Allow-Origin', '*'); 
+        var db = new sqlite3.Database(DBPATH); // Abre o banco
+        sql = `INSERT INTO feedback (nome, texto) VALUES ('${req.body.nome}','${req.body.texto}')`
+        console.log(sql);
+        db.run(sql, [],  err => {
+            if (err) {
+                throw err;
+            }	
+        });
+        res.write('<p>FEEBACK ENVIADO COM SUCESSO!</p><a href="/">VOLTAR</a>');
+        db.close(); // Fecha o banco
+        res.end();
+    });
+      
 
     /* Definição dos endpoints do FRONT-END */
     app.get('/', function(req, res){

@@ -1,0 +1,87 @@
+ <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width" />
+        <title>CRUD</title>
+    </head>
+    <h1>Currículo</h1>
+    <p><a href="/inserirdado_page">INSERIR DADO</a></p>
+    <p><a href="/mostra">MOSTRA OS DADOS</a></p>
+    <body>
+        <form action="/removedado">
+            id: <input type="number" name="id" required>
+            <input type="submit" value="DELETAR"> 
+        </form>
+        <div id="resultado"></div><br>
+        <div id="feedback">
+            <h3>Insira aqui o seu feedback do Currículo:</h3>
+            <form id="form" action="/enviar" method="post">
+                Seu nome: <input type="text" name="nome" id="nome">
+                Feedback: <input type="text" name="texto" id="texto"><br><br>
+
+                Enviar feedback ao banco de dados com AJAX: <input type="submit" value="Enviar!">
+            </form>
+        </div>
+    </body>
+
+    <script>
+        const url = '/';
+    
+        fetch(url)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            let usuarios = data;
+            let saida = '';
+            usuarios.map(function(usuario) {
+            saida += '<strong> '+ `${usuario.nome_completo}` + '</strong> ' + `${usuario.email}`  + ' - ' +  `${usuario.telefone}`;
+            saida += ' - <a href="/atualizaUsuario?idUser=' + `${usuario.userId}` + '">EDITAR</a>';
+            saida += ' | <a href="/removeUsuario?idUser='+`${usuario.userId}`+'">REMOVER</a></br>';
+            });
+            document.getElementById('resultado').innerHTML = saida;
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+        
+    </script>
+    <script>
+        // Obtém uma referência para o formulário e os campos de entrada
+        var form = document.getElementById('form');
+        var nomeInput = document.getElementById('nome');
+        var feedbackInput = document.getElementById('texto');
+
+        // Adiciona um ouvinte de evento para o evento de envio do formulário
+        form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Impede o envio normal do formulário
+
+        // Cria um objeto FormData para enviar os dados do formulário
+        var formData = new FormData();
+        formData.append('nome', nomeInput.value);
+        formData.append('texto', feedbackInput.value);
+
+        // Cria uma instância do objeto XMLHttpRequest
+        var xhr = new XMLHttpRequest();
+
+        // Configura a requisição
+        xhr.open('POST', 'http://localhost:3000/enviar', true);
+
+        // Define a função de retorno de chamada para tratar a resposta do servidor
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+            // Requisição bem-sucedida
+            console.log('Feedback enviado com sucesso!');
+            } else {
+            // Erro na requisição
+            console.error('Ocorreu um erro ao enviar o feedback. Status: ' + xhr.status);
+            }
+        };
+
+        // Envia a requisição com os dados do formulário
+        xhr.send(formData);
+        });
+    </script>
+    </html>

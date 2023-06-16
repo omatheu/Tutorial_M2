@@ -1,21 +1,26 @@
 const express = require('express'); 
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
+const path = require('path')
 
 const sqlite3 = require('sqlite3').verbose();
 const DBPATH = 'dbUser.db';
 
 const hostname = '127.0.0.1';
-const port = 3071;
+const port = 3000;
 const app = express();
 
 /* Servidor aplicação */
 
-app.use(express.static("../frontend/"));
+app.use(express.static("./frontend/"));
 /* Definição dos endpoints */
 
 /******** CRUD ************/
 app.use(express.json());
+
+app.get('/', (req, res) =>{
+	res.sendFile(path.join(__dirname + '/frontend/admin/index.html'))
+})
 
 // Retorna todos registros (é o R do CRUD - Read)
 app.get('/users', (req, res) => {
@@ -23,7 +28,7 @@ app.get('/users', (req, res) => {
 	res.setHeader('Access-Control-Allow-Origin', '*'); // Isso é importante para evitar o erro de CORS
 
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
-  var sql = 'SELECT * FROM tbUser ORDER BY nome COLLATE NOCASE';
+  var sql = 'SELECT * FROM pessoa ORDER BY nome COLLATE NOCASE';
 	db.all(sql, [],  (err, rows ) => {
 		if (err) {
 		    throw err;

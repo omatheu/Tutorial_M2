@@ -8,7 +8,14 @@
     </head>
     <h1>Currículo</h1>
     <p><a href="/inserirdado_page">INSERIR DADO</a></p>
-    <p><a href="/mostra">EXIBIR DADO</a></p>
+    <p><a href="/mostra">MOSTRA OS DADOS</a></p>
+    <body>
+        <form action="/removedado">
+            id: <input type="number" name="id" required>
+            <input type="submit" value="DELETAR"> 
+        </form>
+        <div id="resultado"></div>
+    </body>
 
     <script>
         const url = '/';
@@ -32,12 +39,4 @@
         });
         
     </script>
-
-    <body>
-        <form action="/removedado">
-            id: <input type="number" name="id" required>
-            <input type="submit" value="DELETAR"> 
-        </form>
-        <div id="resultado"></div>
-    </body>
     </html>
